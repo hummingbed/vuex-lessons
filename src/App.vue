@@ -1,15 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg=""/>
+  {{$store.state.msg}}
+
+   <ul>
+    <li v-for="friend in $store.state.friendsModule.friends" :key="friend" >
+      {{friend}} &nbsp;  <button v-on:click="$store.dispatch('unFriendAction')" >delete</button>
+    </li>
+     <button v-on:click="$store.dispatch('addFriendAction')" >click</button>
+  </ul>
+
+ 
 </template>
 
 <script>
+// import {friendsModule} from './store/modules/friend.module'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld 
   }
 }
 </script>
@@ -22,5 +32,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+li{
+  list-style: none;
 }
 </style>
